@@ -1,28 +1,31 @@
-function shuffle(array) { // Fisher–Yates Shuffle
-	var m = array.length, t, i;
-	while(m) {
-		i = Math.floor(Math.random() * m--);
-		t = array[m];
-		array[m] = array[i];
-		array[i] = t;
-	}
-	return array;
-}
-
-function generateMap() {
-	var map = [];
-
-}
-
 Template.home.events({
 	"click #create": function(e) {
-		var words = Words.find().fetch().map(function(value) {
-			return value.word;
+		Meteor.call("createGame", function(error, value) {
+			if(error) {
+				console.log(error);
+			}
+			else {
+				Router.go("gameOracle", {"_id": value._id, "secret": value.secret});
+			}
 		});
-		shuffle(words);
-		Games.insert({
-			"words": words.slice(25),
-			"map": []
-		});
+	}
+});
+
+Template.game.helpers({
+	"wordTable": function() {
+		var table = '<table id="wordTable">';
+		for(var i = 0; i < 5; i++) {
+			table += "<tr>";
+			for(var j = 0; j < 5; j++) {
+				var classes = "";
+				if(this.map) {
+					classes = "clickable " + this.map[i * 5 + j];
+				}
+				table += '<td class="' + classes + '" data-index="' + (i * 5 + j) + '">' + this.words[i * 5 + j] + '</td>';
+			}
+			table += "</tr>";
+		}
+		table += "</table";
+		return table;
 	}
 });

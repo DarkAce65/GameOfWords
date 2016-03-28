@@ -15,3 +15,32 @@ body {
 }
 
 .lh-selection(~'background-color: #333; color: white;');
+
+#wordTable {
+	width: 100%;
+	table-layout: fixed;
+
+	td {
+		width: 25%;
+		padding: 25px 10px;
+		text-align: center;
+		color: white;
+		border: 1px solid lightgray;
+
+		&.kill {
+			background: #333;
+		}
+
+		&.neutral {
+			background: rgb(187, 191, 114);
+		}
+
+		&.team1 {
+			background: rgb(191, 121, 114);
+		}
+
+		&.team2 {
+			background: rgb(114, 137, 191);
+		}
+	}
+}
