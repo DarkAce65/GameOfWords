@@ -9,7 +9,7 @@ Meteor.publish("gameData", function(gameId, secret) {
 		throw new Meteor.Error("game-not-found", "Game not found");
 	}
 	if(game.secret === secret) {
-		return Games.find();
+		return Games.find(gameId);
 	}
 	return Games.find(gameId, {
 		fields: {
