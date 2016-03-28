@@ -19,28 +19,48 @@ body {
 #wordTable {
 	width: 100%;
 	table-layout: fixed;
+	margin: 10px;
 
 	td {
 		width: 25%;
 		padding: 25px 10px;
 		text-align: center;
-		color: white;
 		border: 1px solid lightgray;
 
 		&.kill {
-			background: #333;
+			background: rgb(75,75,75);
+			color: white;
 		}
 
 		&.neutral {
 			background: rgb(169,162,122);
+			color: white;
 		}
 
 		&.team1 {
 			background: rgb(187,75,78);
+			color: white;
 		}
 
 		&.team2 {
 			background: rgb(94,154,78);
+			color: white;
 		}
 	}
+}
+
+#board {
+	margin: 10px;
+}
+
+#board label {
+	float: left;
+	display: inline-block;
+  	width: 140px;
+  	text-align: right;
+  	padding-right: 5px;
+}
+
+#board input {
+	display: block;
 }

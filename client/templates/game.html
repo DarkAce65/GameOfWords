@@ -1,9 +1,12 @@
 <template name="game">
-	<div class="container">
-		<div>{{_id}}</div>
+	<div id='board' class="container">
+		<label for="gameLink">Game Link: </label>
+		<input disabled size='100' type='text' id='gameLink' value={{urlFor route='game'}} />
+		{{#if secret}}
+		<label for="gameLink">Game Oracle Link: </label>
+		<input disabled size='100' type='text' id='gameLink' value={{urlFor route='gameOracle'}} />
+		{{/if}}
 		{{{wordTable}}}
-		<div>{{map}}</div>
 		<div>{{actions}}</div>
-		<div>{{secret}}</div>
 	</div>
 </template>
