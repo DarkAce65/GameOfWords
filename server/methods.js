@@ -14,10 +14,13 @@ Meteor.methods({
 			return value.word;
 		});
 		shuffle(words);
-		return Games.insert({
+		var gameInfo = {secret: Random.id(5)};
+		gameInfo._id = Games.insert({
 			"words": words.slice(0, 25),
+			"secret": gameInfo.secret,
 			"map": generateMap(),
 			"actions": []
 		});
+		return gameInfo;
 	}
 });
