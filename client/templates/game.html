@@ -1,8 +1,10 @@
 <template name="game">
 	<div id='board' class="container">
-		<p class="gameLink">Game Link: <span>{{urlFor "game"}}</span></p>
+		<label for="gameLink">Plebians: </label>
+		<input disabled size='100' type='text' id='gameLink' value={{urlFor route='game'}} />
 		{{#if secret}}
-			<p class="gameLink">Game Oracle Link: <span>{{urlFor "gameOracle"}}</span></p>
+		<label for="gameLink">Oracles: </label>
+		<input disabled size='100' type='text' id='gameLink' value={{urlFor route='gameOracle'}} />
 		{{/if}}
 		{{{wordTable}}}
 		<div>{{actions}}</div>
