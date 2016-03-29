@@ -11,6 +11,18 @@ Template.home.events({
 	}
 });
 
+Template.game.onRendered(function() {
+	var clipboard = new Clipboard(".clipboardBtn");
+	clipboard.on("success", function(e) {
+		e.clearSelection();
+
+		$(e.trigger).tooltip("show");
+		setTimeout(function() {
+			$(e.trigger).tooltip("hide");
+		}, 1000);
+	});
+});
+
 Template.game.helpers({
 	"wordTable": function() {
 		var table = '<table id="wordTable">';
