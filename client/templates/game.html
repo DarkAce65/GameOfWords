@@ -1,8 +1,25 @@
 <template name="game">
-	<div id='board' class="container">
-		<p class="gameLink">Plebians: <span>{{urlFor "game"}}</span></p>
+	<div id="board" class="container">
+		<h2>Game of Words</h2>
+		<div class="input-group" style="margin-bottom: 10px;">
+			<span class="monospace input-group-addon" style="background-color: white;">Plebians:</span>
+			<input id="plebian" type="text" disabled class="form-control" value="{{urlFor 'game'}}">
+			<span class="input-group-btn">
+				<button class="btn btn-default clipboardBtn" data-clipboard-target="#plebian" data-toggle="tooltip" data-trigger="manual" title="Copied!">
+					<i class="fa fa-clipboard"></i>
+				</button>
+			</span>
+		</div>
 		{{#if secret}}
-			<p class="gameLink">Oracles: <span>{{urlFor "gameOracle"}}</span></p>
+			<div class="input-group" style="margin-bottom: 10px;">
+				<span class="monospace input-group-addon" style="background-color: white;">Oracles:</span>
+				<input id="oracle" type="text" disabled class="form-control" value="{{urlFor 'gameOracle'}}">
+				<span class="input-group-btn">
+					<button class="btn btn-default clipboardBtn" data-clipboard-target="#oracle" data-toggle="tooltip" data-trigger="manual" title="Copied!">
+						<i class="fa fa-clipboard"></i>
+					</button>
+				</span>
+			</div>
 		{{/if}}
 		{{{wordTable}}}
 		<div>{{actions}}</div>
