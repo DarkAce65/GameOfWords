@@ -30,8 +30,15 @@ Template.game.helpers({
 			table += "<tr>";
 			for(var j = 0; j < 5; j++) {
 				var classes = "";
-				if(this.map) {
-					classes = "clickable " + this.map[i * 5 + j];
+				var team = this.map ? this.map[i * 5 + j] : this.actions[i * 5 + j];
+				if (team) {
+					classes = team;
+				}
+				if (this.actions[i * 5 + j]) {
+					classes = classes + ' reveal'
+				}
+				else if (this.map) {
+					classes = classes + ' clickable';
 				}
 				table += '<td class="' + classes + '" data-index="' + (i * 5 + j) + '">' + this.words[i * 5 + j] + '</td>';
 			}

@@ -25,6 +25,9 @@ Meteor.methods({
 	},
 	
 	'addAction': function(_id, secret, dataIndex) {
-		Games.update({_id: _id, secret: secret}, {$push: {actions: dataIndex}});
+		var obj = {};
+		obj["actions." + dataIndex] = 
+			Games.findOne({_id: _id, secret: secret}).map[dataIndex];
+		Games.update({_id: _id, secret: secret}, {$set: obj});
 	},
 });
