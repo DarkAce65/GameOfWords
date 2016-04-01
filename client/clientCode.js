@@ -41,3 +41,10 @@ Template.game.helpers({
 		return table;
 	}
 });
+
+Template.game.events({
+	'click .clickable': function(event) {
+		var dataIndex = $(event.target).attr('data-index');
+		Meteor.call('addAction', this._id, this.secret, dataIndex);
+	}
+});

@@ -22,5 +22,9 @@ Meteor.methods({
 			"actions": []
 		});
 		return gameInfo;
-	}
+	},
+	
+	'addAction': function(_id, secret, dataIndex) {
+		Games.update({_id: _id, secret: secret}, {$push: {actions: dataIndex}});
+	},
 });
