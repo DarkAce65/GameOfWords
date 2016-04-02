@@ -68,11 +68,20 @@ Template.game.helpers({
 
 Template.game.events({
 	"click .clickable": function(event) {
-		var title = $(event.target).attr("title");
-		if(confirm("Reveal " + title + " to plebians?")) {
-			var dataIndex = $(event.target).attr("data-index");
-			Meteor.call("addAction", this._id, this.secret, dataIndex);
-		}
+		var _id = this._id;
+		var secret = this.secret;
+		var dataIndex = $(event.target).attr("data-index");
+		swal({
+			title: "Reveal " + $(event.target).attr("title") + " to plebians?",
+			showCancelButton: true,
+			confirmButtonColor: "#5e9a4e",
+			confirmButtonText: "Yes",
+			cancelButtonText: "No"
+		}, function(confirm){
+			if(confirm) {
+				Meteor.call("addAction", _id, secret, dataIndex);
+			}
+		});
 	},
 	"click .revealed": function(event) {
 		var word = $(event.target).attr("title");
