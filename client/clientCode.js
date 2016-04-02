@@ -49,7 +49,7 @@ Template.game.helpers({
 			}
 			table += "</tr>";
 		}
-		table += "</table";
+		table += "</table>";
 		return table;
 	}
 });
