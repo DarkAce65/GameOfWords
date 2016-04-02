@@ -33,7 +33,11 @@ Template.game.onRendered(function() {
 
 Template.game.helpers({
 	"wordTable": function() {
-		var table = '<table id="wordTable">';
+		var table = '<table id="wordTable"';
+		if(this.secret) {
+			table += ' class="oracle">';
+		}
+		table += ">";
 		for(var i = 0; i < 5; i++) {
 			table += "<tr>";
 			for(var j = 0; j < 5; j++) {
