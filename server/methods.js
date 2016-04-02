@@ -14,20 +14,36 @@ Meteor.methods({
 			return value.word;
 		});
 		shuffle(words);
-		var gameInfo = {secret: Random.id(5)};
+
+		var revealed = [];
+		for(var i = 0; i < 25; i++) {
+			revealed.push(false);
+		}
+
+		var gameInfo = {
+			secret: Random.id(5)
+		};
 		gameInfo._id = Games.insert({
-			"words": words.slice(0, 25),
 			"secret": gameInfo.secret,
 			"map": generateMap(),
+			"board": {
+				"words": words.slice(0, 25),
+				"revealed": revealed
+			},
 			"actions": []
 		});
 		return gameInfo;
 	},
-	
 	'addAction': function(_id, secret, dataIndex) {
-		var obj = {};
-		obj["actions." + dataIndex] = 
-			Games.findOne({_id: _id, secret: secret}).map[dataIndex];
-		Games.update({_id: _id, secret: secret}, {$set: obj});
+		var game = Games.findOne({_id: _id, secret: secret});
+		var set = {};
+		set["board.revealed." + dataIndex] = game.map[dataIndex];
+
+		Games.update({_id: _id, secret: secret}, {
+			$set: set,
+			$push: {
+				"actions": "Revealed " + game.board.words[dataIndex] + " for " + game.map[dataIndex]
+			}
+		});
 	},
 });

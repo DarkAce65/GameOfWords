@@ -30,17 +30,17 @@ Template.game.helpers({
 			table += "<tr>";
 			for(var j = 0; j < 5; j++) {
 				var classes = "";
-				var team = this.map ? this.map[i * 5 + j] : this.actions[i * 5 + j];
-				var word = this.actions[i * 5 + j] ? '' : this.words[i * 5 + j];
-				var title = this.words[i * 5 + j];
-				if (team) {
+				var team = this.map ? this.map[i * 5 + j] : this.board.revealed[i * 5 + j];
+				var word = this.board.revealed[i * 5 + j] ? "" : this.board.words[i * 5 + j];
+				var title = this.board.words[i * 5 + j];
+				if(team) {
 					classes = team;
 				}
-				if (this.actions[i * 5 + j]) {
-					classes = classes + ' reveal'
+				if(this.board.revealed[i * 5 + j]) {
+					classes += " revealed"
 				}
-				else if (this.map) {
-					classes = classes + ' clickable';
+				else if(this.map) {
+					classes += " clickable";
 				}
 				table += '<td class="' + classes
 					+ '" data-index="' + (i * 5 + j)
@@ -55,11 +55,11 @@ Template.game.helpers({
 });
 
 Template.game.events({
-	'click .clickable': function(event) {
-		var title = $(event.target).attr('title');
-		if (confirm('Reveal ' + title + ' to plebians?')) {
-			var dataIndex = $(event.target).attr('data-index');
-			Meteor.call('addAction', this._id, this.secret, dataIndex);
+	"click .clickable": function(event) {
+		var title = $(event.target).attr("title");
+		if(confirm("Reveal " + title + " to plebians?")) {
+			var dataIndex = $(event.target).attr("data-index");
+			Meteor.call("addAction", this._id, this.secret, dataIndex);
 		}
 	}
 });
