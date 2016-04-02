@@ -36,6 +36,10 @@ body {
 		border: 1px solid lightgray;
 		word-wrap: break-word;
 
+		&.clickable {
+			cursor: pointer;
+		}
+
 		&.kill {
 			background: rgb(75,75,75);
 			color: white;
@@ -68,6 +72,23 @@ body {
 	background: rgba(255, 255, 255, 0.5);
 }
 
-.clickable {
-	cursor: pointer;
+#actionLog {
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	.kill {
+		color: rgb(75,75,75);
+	}
+
+	.neutral {
+		color: rgb(169,162,122);
+	}
+
+	.team1 {
+		color: rgb(187,75,78);
+	}
+
+	.team2 {
+		color: rgb(94,154,78);
+	}
 }

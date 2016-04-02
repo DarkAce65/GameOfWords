@@ -21,6 +21,17 @@
 				</span>
 			</div>
 		{{/if}}
+		<hr>
 		{{{wordTable}}}
+		{{#if secret}}
+			<hr>
+			<div class="well well-sm">
+				<ul id="actionLog" class="list-inline">
+					{{#each action in actions}}
+						<li><span class="{{action.team}}">{{action.word}}</span></li>
+					{{/each}}
+				</ul>
+			</div>
+		{{/if}}
 	</div>
 </template>

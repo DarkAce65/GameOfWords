@@ -42,7 +42,10 @@ Meteor.methods({
 		Games.update({_id: _id, secret: secret}, {
 			$set: set,
 			$push: {
-				"actions": "Revealed " + game.board.words[dataIndex] + " for " + game.map[dataIndex]
+				"actions": {
+					"word": game.board.words[dataIndex],
+					"team": game.map[dataIndex]
+				}
 			}
 		});
 	},
