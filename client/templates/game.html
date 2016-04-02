@@ -1,6 +1,18 @@
 <template name="game">
 	{{> banner}}
 	<div id="board" class="container">
+		{{{wordTable}}}
+		{{#if secret}}
+			<hr>
+			<div class="well well-sm">
+				<ul id="actionLog" class="list-inline">
+					{{#each action in actions}}
+						<li class="{{action.team}}">{{action.word}}</li>
+					{{/each}}
+				</ul>
+			</div>
+		{{/if}}
+		<hr>
 		<div class="input-group" style="margin-bottom: 10px;">
 			<span class="monospace input-group-addon" style="background-color: white;">Plebians:</span>
 			<input id="plebian" type="text" disabled class="form-control" value="{{urlFor 'game'}}">
@@ -19,18 +31,6 @@
 						<i class="fa fa-clipboard"></i>
 					</button>
 				</span>
-			</div>
-		{{/if}}
-		<hr>
-		{{{wordTable}}}
-		{{#if secret}}
-			<hr>
-			<div class="well well-sm">
-				<ul id="actionLog" class="list-inline">
-					{{#each action in actions}}
-						<li class="{{action.team}}">{{action.word}}</li>
-					{{/each}}
-				</ul>
 			</div>
 		{{/if}}
 	</div>
