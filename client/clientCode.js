@@ -43,7 +43,7 @@ Template.game.helpers({
 			for(var j = 0; j < 5; j++) {
 				var classes = "";
 				var team = this.map ? this.map[i * 5 + j] : this.board.revealed[i * 5 + j];
-				var word = this.board.revealed[i * 5 + j] ? "" : this.board.words[i * 5 + j];
+				var word = this.board.revealed[i * 5 + j] ? "&nbsp;" : this.board.words[i * 5 + j];
 				var title = this.board.words[i * 5 + j];
 				if(team) {
 					classes = team;
