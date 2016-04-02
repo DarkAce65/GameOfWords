@@ -55,17 +55,17 @@ body {
 			background: rgb(94,154,78);
 			color: white;
 		}
-
-		&.revealed::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(255, 255, 255, 0.5);
-		}
 	}
+}
+
+#wordTable.oracle td.revealed::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.5);
 }
 
 .clickable {

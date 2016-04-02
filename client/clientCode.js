@@ -35,7 +35,7 @@ Template.game.helpers({
 	"wordTable": function() {
 		var table = '<table id="wordTable"';
 		if(this.secret) {
-			table += ' class="oracle">';
+			table += ' class="oracle"';
 		}
 		table += ">";
 		for(var i = 0; i < 5; i++) {
