@@ -1,3 +1,11 @@
+$.Velocity.RegisterEffect("showWord", {
+	defaultDuration: 1500,
+	calls: [
+		[{"colorAlpha": 0}, 1, {delay: 750}]
+	],
+	reset: {"colorAlpha": 1}
+});
+
 Template.home.events({
 	"click #create": function(e) {
 		Meteor.call("createGame", function(error, value) {
@@ -61,5 +69,14 @@ Template.game.events({
 			var dataIndex = $(event.target).attr("data-index");
 			Meteor.call("addAction", this._id, this.secret, dataIndex);
 		}
+	},
+	"click .revealed": function(event) {
+		var word = $(event.target).attr("title");
+		$(event.target).html(word);
+		$(event.target).velocity("stop").velocity("reverse", {"duration": 100}).velocity("showWord", {
+			complete: function(element) {
+				$(element).html("");
+			}
+		});
 	}
 });
