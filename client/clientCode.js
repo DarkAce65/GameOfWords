@@ -31,6 +31,8 @@ Template.game.helpers({
 			for(var j = 0; j < 5; j++) {
 				var classes = "";
 				var team = this.map ? this.map[i * 5 + j] : this.actions[i * 5 + j];
+				var word = this.actions[i * 5 + j] ? '' : this.words[i * 5 + j];
+				var title = this.words[i * 5 + j];
 				if (team) {
 					classes = team;
 				}
@@ -40,7 +42,10 @@ Template.game.helpers({
 				else if (this.map) {
 					classes = classes + ' clickable';
 				}
-				table += '<td class="' + classes + '" data-index="' + (i * 5 + j) + '">' + this.words[i * 5 + j] + '</td>';
+				table += '<td class="' + classes
+					+ '" data-index="' + (i * 5 + j)
+					+ '" title="' + title
+					+ '">' +  word + '</td>';
 			}
 			table += "</tr>";
 		}
@@ -51,7 +56,10 @@ Template.game.helpers({
 
 Template.game.events({
 	'click .clickable': function(event) {
-		var dataIndex = $(event.target).attr('data-index');
-		Meteor.call('addAction', this._id, this.secret, dataIndex);
+		var title = $(event.target).attr('title');
+		if (confirm('Reveal ' + title + ' to plebians?')) {
+			var dataIndex = $(event.target).attr('data-index');
+			Meteor.call('addAction', this._id, this.secret, dataIndex);
+		}
 	}
 });
