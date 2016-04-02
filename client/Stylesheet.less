@@ -30,16 +30,17 @@ body {
 }
 
 #create {
+	display: block;
 	width: 200px;
 	padding: 14px 0;
 	background-color: white;
-	color: #2ecc71;
-	border: 2px #2ecc71 solid;
+	color: darkgreen;
+	border: 2px darkgreen solid;
 	.lh-transition(0.4s);
 
 	&:hover, &:focus {
 		color: white;
-		background-color:#2ecc71;
+		background-color: darkgreen;
 	}
 }
 
@@ -110,5 +111,33 @@ body {
 
 	.team2 {
 		color: rgb(94,154,78);
+	}
+}
+
+@media (max-width: 480px) {
+	#wordTable td {
+		font-size: 90%;
+	}
+}
+
+@media (max-width: 768px) {
+	#banner {
+		text-align: center;
+	}
+
+	#create {
+		margin: 0 auto;
+	}
+}
+
+@media (min-width: 768px) {
+	#wordTable td {
+		font-size: 110%;
+	}
+}
+
+@media (min-width: 992px) {
+	#wordTable td {
+		font-size: 120%;
 	}
 }
