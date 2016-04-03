@@ -8,7 +8,8 @@ Meteor.publish("gameData", function(gameId, secret) {
 	}
 	return Games.find(gameId, {
 		fields: {
-			board: 1
+			board: 1,
+			actions: 1
 		}
 	});
 });
