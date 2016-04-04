@@ -79,7 +79,7 @@ Template.game.events({
 			cancelButtonText: "No"
 		}, function(confirm){
 			if(confirm) {
-				Meteor.call("addAction", _id, secret, dataIndex);
+				Meteor.call("revealTile", _id, secret, dataIndex);
 			}
 		});
 	},

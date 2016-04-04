@@ -34,7 +34,7 @@ Meteor.methods({
 		});
 		return gameInfo;
 	},
-	"addAction": function(_id, secret, dataIndex) {
+	"revealTile": function(_id, secret, dataIndex) {
 		var game = Games.findOne({_id: _id, secret: secret});
 		var set = {};
 		set["board.revealed." + dataIndex] = game.map[dataIndex];
