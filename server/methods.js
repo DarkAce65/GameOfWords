@@ -1,10 +1,11 @@
 function generateMap() {
 	var map = [
 		"kill",
-		"team1", "team1", "team1", "team1", "team1", "team1", "team1", "team1", "team1",
+		"team1", "team1", "team1", "team1", "team1", "team1", "team1", "team1",
 		"team2", "team2", "team2", "team2", "team2", "team2", "team2", "team2",
 		"neutral", "neutral", "neutral", "neutral", "neutral", "neutral", "neutral"
 	];
+	map.push(Math.random() > 0.5 ? "team1" : "team2");
 	return shuffle(map);
 }
 
