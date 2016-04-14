@@ -37,15 +37,12 @@ Meteor.methods({
 	},
 	"revealTile": function(_id, secret, dataIndex) {
 		var game = Games.findOne({_id: _id, secret: secret});
-		if(game.board.revealed[dataIndex]) {
-			throw new Meteor.Error("already-revealed", "This tile has already been revealed.");
-		}
 		var set = {};
 		set["board.revealed." + dataIndex] = game.map[dataIndex];
 
 		Games.update({_id: _id, secret: secret}, {
 			$set: set,
-			$push: {
+			$addToSet: {
 				"actions": {
 					"word": game.board.words[dataIndex],
 					"team": game.map[dataIndex]
