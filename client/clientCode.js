@@ -6,6 +6,12 @@ $.Velocity.RegisterEffect("showWord", {
 	reset: {"colorAlpha": 1}
 });
 
+Template.banner.events({
+	"click h1": function(e) {
+		Router.go("home");
+	}
+});
+
 Template.home.events({
 	"click #create": function(e) {
 		Meteor.call("createGame", function(error, value) {
