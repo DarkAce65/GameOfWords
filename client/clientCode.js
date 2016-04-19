@@ -88,7 +88,7 @@ Template.game.events({
 		$(event.target).html(word);
 		$(event.target).velocity("stop").velocity("reverse", {"duration": 100}).velocity("showWord", {
 			complete: function(element) {
-				$(element).html("");
+				$(element).html("&nbsp;");
 			}
 		});
 	}

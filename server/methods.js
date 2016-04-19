@@ -1,10 +1,11 @@
 function generateMap() {
 	var map = [
 		"kill",
-		"team1", "team1", "team1", "team1", "team1", "team1", "team1", "team1", "team1",
+		"team1", "team1", "team1", "team1", "team1", "team1", "team1", "team1",
 		"team2", "team2", "team2", "team2", "team2", "team2", "team2", "team2",
 		"neutral", "neutral", "neutral", "neutral", "neutral", "neutral", "neutral"
 	];
+	map.push(Math.random() > 0.5 ? "team1" : "team2");
 	return shuffle(map);
 }
 
@@ -41,7 +42,7 @@ Meteor.methods({
 
 		Games.update({_id: _id, secret: secret}, {
 			$set: set,
-			$push: {
+			$addToSet: {
 				"actions": {
 					"word": game.board.words[dataIndex],
 					"team": game.map[dataIndex]
