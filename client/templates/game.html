@@ -15,7 +15,7 @@
 		<hr>
 		<div class="input-group" style="margin-bottom: 10px;">
 			<span class="monospace input-group-addon" style="background-color: white;">Plebians:</span>
-			<input id="plebian" type="text" disabled class="form-control" value="{{urlFor 'game'}}">
+			<input id="plebian" type="text" readonly class="form-control" value="{{urlFor 'game'}}">
 			<span class="input-group-btn">
 				<button class="btn btn-default clipboardBtn" data-clipboard-target="#plebian" data-toggle="tooltip" data-trigger="manual" title="Copied!">
 					<i class="fa fa-clipboard"></i>
@@ -25,7 +25,7 @@
 		{{#if secret}}
 			<div class="input-group" style="margin-bottom: 10px;">
 				<span class="monospace input-group-addon" style="background-color: white;">Oracles:</span>
-				<input id="oracle" type="text" disabled class="form-control" value="{{urlFor 'gameOracle'}}">
+				<input id="oracle" type="text" readonly class="form-control" value="{{urlFor 'gameOracle'}}">
 				<span class="input-group-btn">
 					<button class="btn btn-default clipboardBtn" data-clipboard-target="#oracle" data-toggle="tooltip" data-trigger="manual" title="Copied!">
 						<i class="fa fa-clipboard"></i>
