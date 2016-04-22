@@ -9,7 +9,11 @@ Meteor.publish("gameData", function(gameId, secret) {
 	return Games.find(gameId, {
 		fields: {
 			board: 1,
-			actions: 1
+			actions: 1,
+			firstPlayerTeam: 1,
+			firstPlayerCount: 1,
+			secondPlayerTeam: 1,
+			secondPlayerCount: 1
 		}
 	});
 });

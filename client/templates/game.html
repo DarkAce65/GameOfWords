@@ -5,11 +5,23 @@
 		{{#if actions}}
 			<hr>
 			<div class="well well-sm">
-				<ul id="actionLog" class="list-inline">
+				<ul class="list-inline currentState">
 					{{#each action in actions}}
 						<li class="{{action.team}}">{{action.word}}</li>
 					{{/each}}
 				</ul>
+			</div>
+		{{/if}}
+		{{#if firstPlayerTeam}}
+			<hr>
+			<div class="well well-sm">
+				<p class="currentState">
+					<span class="neutral">WORDS LEFT: </span>
+					<span class="{{firstPlayerTeam}}">{{firstPlayerRemainingCount}}</span>
+					<span class="neutral">|</span>
+					<span class="{{secondPlayerTeam}}">{{secondPlayerRemainingCount}}</span>
+					<span class="neutral">| {{neutralRemainingCount}}</span>
+				</p>
 			</div>
 		{{/if}}
 		<hr>

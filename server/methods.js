@@ -1,12 +1,10 @@
-function generateMap() {
-	var map = [
+function generateBaseMap() {
+	return [
 		"kill",
 		"team1", "team1", "team1", "team1", "team1", "team1", "team1", "team1",
 		"team2", "team2", "team2", "team2", "team2", "team2", "team2", "team2",
 		"neutral", "neutral", "neutral", "neutral", "neutral", "neutral", "neutral"
 	];
-	map.push(Math.random() > 0.5 ? "team1" : "team2");
-	return shuffle(map);
 }
 
 Meteor.methods({
@@ -15,6 +13,11 @@ Meteor.methods({
 			return value.word;
 		});
 		shuffle(words);
+
+		var map = generateBaseMap();
+		var firstPlayerTeam = Math.random() > 0.5 ? "team1" : "team2";
+		map.push(firstPlayerTeam);
+		shuffle(map);
 
 		var revealed = [];
 		for(var i = 0; i < 25; i++) {
@@ -26,12 +29,16 @@ Meteor.methods({
 		};
 		gameInfo._id = Games.insert({
 			"secret": gameInfo.secret,
-			"map": generateMap(),
+			"map": map,
 			"board": {
 				"words": words.slice(0, 25),
 				"revealed": revealed
 			},
-			"actions": []
+			"actions": [],
+			"firstPlayerCount": 9,
+			"firstPlayerTeam": firstPlayerTeam,
+			"secondPlayerCount": 8,
+			"secondPlayerTeam": firstPlayerTeam === "team1" ? "team2" : "team1"
 		});
 		return gameInfo;
 	},

@@ -69,6 +69,33 @@ Template.game.helpers({
 		}
 		table += "</table>";
 		return table;
+	},
+	"firstPlayerRemainingCount": function() {
+		var guessed = 0;
+		for (var i = 0; i < this.actions.length; i++) {
+			if (this.actions[i].team == this.firstPlayerTeam) {
+				guessed++;
+			}
+		}
+		return this.firstPlayerCount - guessed;
+	},
+	"secondPlayerRemainingCount": function() {
+		var guessed = 0;
+		for (var i = 0; i < this.actions.length; i++) {
+			if (this.actions[i].team == this.secondPlayerTeam) {
+				guessed++;
+			}
+		}
+		return this.secondPlayerCount - guessed;
+	},
+	"neutralRemainingCount": function() {
+		var guessed = 0;
+		for (var i = 0; i < this.actions.length; i++) {
+			if (this.actions[i].team == "neutral") {
+				guessed++;
+			}
+		}
+		return 7 - guessed;
 	}
 });
 
