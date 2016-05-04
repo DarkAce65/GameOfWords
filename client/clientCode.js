@@ -13,8 +13,13 @@ Template.banner.events({
 });
 
 Template.home.events({
-	"click #create": function(e) {
-		Meteor.call("createGame", function(error, value) {
+	"submit .create-game": function(event) {
+		event.preventDefault();
+		var team1 = event.target.team1.value;
+		var team2 = event.target.team2.value;
+		var frequent = event.target.frequent.value;
+		var infrequent = event.target.infrequent.value;
+		Meteor.call("createGame", team1, team2, frequent, infrequent, function(error, value) {
 			if(error) {
 				console.log(error);
 			}
@@ -96,6 +101,23 @@ Template.game.helpers({
 			}
 		}
 		return 7 - guessed;
+	},
+	"showTeams": function() {
+		return this.team1Players.length > 0 || this.team2Players.length > 0;
+	},
+	"firstPlayerTeamPlayers": function() {
+		if (this.firstPlayerTeam === "team1") {
+			return toTeamString(this.team1Players);
+		} else {
+			return toTeamString(this.team2Players);
+		}
+	},
+	"secondPlayerTeamPlayers": function() {
+		if (this.firstPlayerTeam === "team1") {
+			return toTeamString(this.team2Players);
+		} else {
+			return toTeamString(this.team1Players);
+		}
 	}
 });
 

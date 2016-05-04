@@ -1,6 +1,16 @@
 <template name="game">
 	{{> banner}}
 	<div id="board" class="container">
+		{{#if showTeams}}
+			<div class="well well-sm">
+				<p class="currentState centerText">
+					<span class="{{firstPlayerTeam}}">{{firstPlayerTeamPlayers}}</span>
+					<span class="neutral">vs. </span>
+					<span class="{{secondPlayerTeam}}">{{secondPlayerTeamPlayers}}</span>
+				</p>
+			</div>
+		<hr>
+		{{/if}}
 		{{{wordTable}}}
 		{{#if actions}}
 			<hr>

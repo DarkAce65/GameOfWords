@@ -1,8 +1,34 @@
 <template name="home">
 	{{> banner}}
-	<div class="container">
-		<div>
-			<button id="create" class="btn">Create</button>
+	<form class="form-horizontal container create-game">
+		<div class="form-group">
+			<label for="team1" class="col-sm-2 control-label">Red: </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" maxlength="150" id="team1" placeholder="Comma separated names"/>
+			</div>
 		</div>
-	</div>
+		<div class="form-group">
+			<label for="team2" class="col-sm-2 control-label">Green: </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" maxlength="150" id="team2" placeholder="Comma separated names"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="frequent" class="col-sm-2 control-label">Frequent players: </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" maxlength="150" id="frequent" placeholder="Comma separated names"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="infrequent" class="col-sm-2 control-label">Infrequent players: </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" maxlength="150" id="infrequent" placeholder="Comma separated names"/><br>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-6">
+				<button class="create-btn btn" type="submit">Create</button>
+			</div>
+		</div>
+	</form>
 </template>

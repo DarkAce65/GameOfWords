@@ -8,11 +8,26 @@ function generateBaseMap() {
 }
 
 Meteor.methods({
-	"createGame": function() {
+	"createGame": function(team1Str, team2Str, frequent, infrequent) {
 		var words = Words.find().fetch().map(function(value) {
 			return value.word;
 		});
 		shuffle(words);
+
+		team1Players = parsecsv(team1Str);
+		team2Players = parsecsv(team2Str);
+		otherPlayers = shuffle(parsecsv(frequent)).concat(shuffle(parsecsv(infrequent)));
+		for (index in otherPlayers) {
+			var whichTeam = team1Players.length > team2Players.length;
+			if (team1Players.length == team2Players.length) {
+				whichTeam = Math.random() > 0.5;
+			}
+			if (whichTeam) {
+				team2Players.push(otherPlayers[index]);
+			} else {
+				team1Players.push(otherPlayers[index]);
+			}
+		}
 
 		var map = generateBaseMap();
 		var firstPlayerTeam = Math.random() > 0.5 ? "team1" : "team2";
@@ -38,10 +53,13 @@ Meteor.methods({
 			"firstPlayerCount": 9,
 			"firstPlayerTeam": firstPlayerTeam,
 			"secondPlayerCount": 8,
-			"secondPlayerTeam": firstPlayerTeam === "team1" ? "team2" : "team1"
+			"secondPlayerTeam": firstPlayerTeam === "team1" ? "team2" : "team1",
+			"team1Players": team1Players,
+			"team2Players": team2Players
 		});
 		return gameInfo;
 	},
+
 	"revealTile": function(_id, secret, dataIndex) {
 		var game = Games.findOne({_id: _id, secret: secret});
 		var set = {};

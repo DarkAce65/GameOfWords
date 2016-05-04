@@ -13,7 +13,9 @@ Meteor.publish("gameData", function(gameId, secret) {
 			firstPlayerTeam: 1,
 			firstPlayerCount: 1,
 			secondPlayerTeam: 1,
-			secondPlayerCount: 1
+			secondPlayerCount: 1,
+			team1Players: 1,
+			team2Players: 1
 		}
 	});
 });
