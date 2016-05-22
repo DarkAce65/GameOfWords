@@ -9,9 +9,7 @@ function generateBaseMap() {
 
 Meteor.methods({
 	"createGame": function(team1Str, team2Str, frequent, infrequent) {
-		var words = Words.find().fetch().map(function(value) {
-			return value.word;
-		});
+		var words = wordlist.slice(0);
 		shuffle(words);
 
 		team1Players = parsecsv(team1Str);

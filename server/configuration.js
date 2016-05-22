@@ -19,8 +19,3 @@ Meteor.publish("gameData", function(gameId, secret) {
 		}
 	});
 });
-
-Words.remove({});
-for(var i = 0; i < wordlist.length; i++) {
-	Words.insert({"word": wordlist[i]});
-}
