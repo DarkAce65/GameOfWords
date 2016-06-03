@@ -431,6 +431,8 @@ wordlist = [
 	"SMOKE",
 	"ANXIETY",
 	"NOOSE",
+	"SCARE",
+	"STAKE",
 
 	// Art category
 	"ASSIGNMENT",
