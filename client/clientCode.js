@@ -9,6 +9,9 @@ $.Velocity.RegisterEffect("showWord", {
 Template.banner.events({
 	"click h1": function(e) {
 		Router.go("home");
+	},
+	"click #condensed": function() {
+		document.body.classList.toggle("condensed");
 	}
 });
 
